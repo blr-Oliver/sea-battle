@@ -1,0 +1,10 @@
+{
+  "name": "sea-battle",
+  "version": "0.0.2",
+  "scripts": {},
+  "author": "vasily.liaskovsky@gmail.com",
+  "private": true,
+  "dependencies": {
+    "readline-sync": "^1.4.7"
+  }
+}
