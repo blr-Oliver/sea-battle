@@ -1,0 +1,88 @@
+.button-board {
+  position: absolute;
+  width: 100%;
+  height: 80px;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+}
+
+.button {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 60px;
+  margin: 10px;
+  border: none;
+  border-radius: 50%;
+  background-color: transparent;
+  box-shadow: 4px 4px 40px rgba(128, 128, 128, 0.5);
+  transform-origin: 50% 50%;
+  transition-property: transform, opacity, width, margin-left, margin-right;
+  transition-duration: 0.4s, 0.2s;
+}
+
+.button:focus {
+  outline: none;
+}
+.button:active{
+  box-shadow: 0 0 20px #0f0;
+}
+
+.button::before {
+  content: ' ';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+}
+
+.button::after {
+  content: ' ';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+  background-image: url(/img/buttons.svg);
+  background-size: 60px 180px;
+  background-repeat: no-repeat;
+}
+
+.button.hidden {
+  opacity: 0;
+  width: 0;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.button.pimp {
+  transform: scale(1.5);
+}
+
+.button.auto::before {
+  background-image: linear-gradient(-45deg, #fb0 0%, #fd6 100%);
+}
+
+.button.auto::after {
+  background-position: 0 0;
+}
+
+.button.reset::before {
+  background-image: linear-gradient(-45deg, #07f 0%, #6bf 100%);
+}
+
+.button.reset::after {
+  background-position: 0 -60px;
+}
+
+.button.start::before {
+  background-image: linear-gradient(-45deg, #f00 0%, #f66 100%);
+}
+
+.button.start::after {
+  background-position: 0 -120px;
+}

@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- inject:css -->
+<link rel="stylesheet" href="/css/style.css" />
+<link rel="stylesheet" href="/css/layout.css" />
+<link rel="stylesheet" href="/css/game-board.css" />
+<link rel="stylesheet" href="/css/score-board.css" />
+<link rel="stylesheet" href="/css/display.css" />
+<link rel="stylesheet" href="/css/button-board.css" />
+<!-- endinject -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  $('.game-board').on('click', function(e){
+    var target = $(this);
+    if(target.is('.secondary')){
+      $('.game-board').toggleClass('secondary');
+    }
+  })
+})
+</script>
+<title>Sea Battle</title>
+</head>
+<body>
+  <table id="layout">
+    <tr>
+      <td id="layout-header"></td>
+    </tr>
+    <tr>
+      <td id="layout-content">
+        <div class="board-container">
+          <aside class="stats-board">
+            <table class="display">
+              <tr>
+                <td>
+                  <table class="game-grid display-ship orient-h" data-size="3" style="display: none;">
+                    <tr>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+            <div class="score-board">
+              <table class="ship-container ship-4">
+                <tr>
+                  <td class="counter-half"><span class="ship-counter">1</span></td>
+                  <td class="ship-half">
+                    <table class="ship">
+                      <tr>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td></td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+              <table class="ship-container ship-3">
+                <tr>
+                  <td class="ship-half">
+                    <table class="ship">
+                      <tr>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td></td>
+                      </tr>
+                    </table>
+                  </td>
+                  <td class="counter-half"><span class="ship-counter">2</span></td>
+                </tr>
+              </table>
+              <table class="ship-container ship-2">
+                <tr>
+                  <td class="ship-half">
+                    <table class="ship">
+                      <tr>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td></td>
+                      </tr>
+                    </table>
+                  </td>
+                  <td class="counter-half"><span class="ship-counter">3</span></td>
+                </tr>
+              </table>
+              <table class="ship-container ship-1">
+                <tr>
+                  <td class="counter-half"><span class="ship-counter">4</span></td>
+                  <td class="ship-half">
+                    <table class="ship">
+                      <tr>
+                        <td></td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <div class="button-board" style="display: none;">
+              <button type="button" class="button auto"></button><button type="button" class="button reset"></button><button type="button" class="button start"></button>
+            </div>
+          </aside>
+          <table class="game-board secondary">
+            <tr>
+              <th class="corner"></th>
+              <th class="spacer top"></th>
+              <th class="top">A</th>
+              <th class="top">B</th>
+              <th class="top">C</th>
+              <th class="top">D</th>
+              <th class="top">E</th>
+              <th class="top">F</th>
+              <th class="top">G</th>
+              <th class="top">H</th>
+              <th class="top">I</th>
+              <th class="top">J</th>
+              <th class="spacer top"></th>
+            </tr>
+            <tr>
+              <th class="spacer left"></th>
+              <td colspan="12" rowspan="12" class="grid-wrap">
+                <table class="game-grid grid-board own">
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td class="ship-cell"></td>
+                    <td class="ship-cell hit"></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td class="miss"></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td class="ship-cell destroyed"></td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <th class="left">1</th>
+            </tr>
+            <tr>
+              <th class="left">2</th>
+            </tr>
+            <tr>
+              <th class="left">3</th>
+            </tr>
+            <tr>
+              <th class="left">4</th>
+            </tr>
+            <tr>
+              <th class="left">5</th>
+            </tr>
+            <tr>
+              <th class="left">6</th>
+            </tr>
+            <tr>
+              <th class="left">7</th>
+            </tr>
+            <tr>
+              <th class="left">8</th>
+            </tr>
+            <tr>
+              <th class="left">9</th>
+            </tr>
+            <tr>
+              <th class="left">10</th>
+            </tr>
+            <tr>
+              <th class="spacer left"></th>
+            </tr>
+          </table>
+          <table class="game-board">
+            <tr>
+              <th class="corner"></th>
+              <th class="spacer top"></th>
+              <th class="top">A</th>
+              <th class="top">B</th>
+              <th class="top">C</th>
+              <th class="top">D</th>
+              <th class="top">E</th>
+              <th class="top">F</th>
+              <th class="top">G</th>
+              <th class="top">H</th>
+              <th class="top">I</th>
+              <th class="top">J</th>
+              <th class="spacer top"></th>
+            </tr>
+            <tr>
+              <th class="spacer left"></th>
+              <td colspan="12" rowspan="12" class="grid-wrap">
+          <table class="game-grid grid-board other">
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </table>
+              </td>
+            </tr>
+            <tr>
+              <th class="left">1</th>
+            </tr>
+            <tr>
+              <th class="left">2</th>
+            </tr>
+            <tr>
+              <th class="left">3</th>
+            </tr>
+            <tr>
+              <th class="left">4</th>
+            </tr>
+            <tr>
+              <th class="left">5</th>
+            </tr>
+            <tr>
+              <th class="left">6</th>
+            </tr>
+            <tr>
+              <th class="left">7</th>
+            </tr>
+            <tr>
+              <th class="left">8</th>
+            </tr>
+            <tr>
+              <th class="left">9</th>
+            </tr>
+            <tr>
+              <th class="left">10</th>
+            </tr>
+            <tr>
+              <th class="spacer left"></th>
+            </tr>
+          </table>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td id="layout-footer"></td>
+    </tr>
+  </table>
+
+</body>
+</html>

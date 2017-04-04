@@ -1,0 +1,36 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-position: 50% 0;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+body,
+html {
+    height: 100%;
+}
+
+#layout {
+    height: 100%;
+    width: 100%;
+    border: none;
+    min-width: 320px;
+}
+
+#layout-content {
+    height: 100%;
+    vertical-align: middle;
+    background-color: transparent;
+}
+
+#layout-footer {
+    height: auto;
+    vertical-align: bottom;
+    padding: 5px 0;
+}
